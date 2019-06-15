@@ -52,4 +52,9 @@ class NewService{
         $modelNew->public=1;
         $modelNew->save();
     }
+
+    public function delete($new){
+        $new->delete();
+    }
+
 }

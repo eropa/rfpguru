@@ -26,14 +26,31 @@
                             <tr>
                                 <td>{{ $data->id }}</td>
                                 <td>{{ $data->datapublic }}</td>
-                                <td>{{ $data->name }}</td>
+                                <td>
+                                    <a href="{{ url('admin/new/'.$data->id.'/edit') }}">
+                                        {{ $data->name }}
+                                    </a>
+                                </td>
                                 <td>
                                     <?php
                                         $namedata=\App\ModelsTagnew::find($data->tagnews_id );
                                         echo $namedata->name;
                                     ?>
                                 </td>
-                                <td>Просмотр / Удаление</td>
+                                <td>
+                                    <a href="#"
+                                       onclick="event.preventDefault(); document.getElementById('delete{{$data->id}}').submit();"
+                                    >
+                                        Удалить
+                                    </a>
+
+                                    <form id="delete{{$data->id}}" action="{{ url('admin/new/'.$data->id) }}"
+                                          method="POST"
+                                          style="display: none;">
+                                        @csrf
+                                        <input type="hidden" name="_method" value="delete" />
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

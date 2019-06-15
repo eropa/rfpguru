@@ -24,9 +24,26 @@
                     @foreach($dataTagpages as $dataTagpage)
                         <tr>
                             <th scope="row">{{ $dataTagpage->id }}</th>
-                            <td>{{ $dataTagpage->name }}</td>
+                            <td>
+                                <a href="{{ url('admin/tagpage/'.$dataTagpage->id.'/edit') }}">
+                                    {{ $dataTagpage->name }}
+                                </a>
+                            </td>
                             <td>{{ $dataTagpage->slug }}</td>
-                            <td>Удалить</td>
+                            <td>
+                                <a href="#"
+                                   onclick="event.preventDefault(); document.getElementById('delete{{$dataTagpage->id}}').submit();"
+                                >
+                                    Удалить
+                                </a>
+
+                                <form id="delete{{$dataTagpage->id}}" action="{{ url('admin/tagpage/'.$dataTagpage->id) }}"
+                                      method="POST"
+                                      style="display: none;">
+                                    @csrf
+                                    <input type="hidden" name="_method" value="delete" />
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

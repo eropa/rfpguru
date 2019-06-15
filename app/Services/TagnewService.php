@@ -12,4 +12,8 @@ class TagnewService{
         $mymodel->name=$request->input('name');
         $mymodel->save();
     }
+
+    public function deleteRecord($tagnew){
+        $tagnew->delete();
+    }
 }

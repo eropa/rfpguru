@@ -48,7 +48,7 @@ class ModelsTagpageController extends Controller
      * @param  \App\ModelsTagpage  $modelsTagpage
      * @return \Illuminate\Http\Response
      */
-    public function show(ModelsTagpage $modelsTagpage)
+    public function show(ModelsTagpage $tagpage)
     {
         //
     }
@@ -59,9 +59,9 @@ class ModelsTagpageController extends Controller
      * @param  \App\ModelsTagpage  $modelsTagpage
      * @return \Illuminate\Http\Response
      */
-    public function edit(ModelsTagpage $modelsTagpage)
+    public function edit(ModelsTagpage $tagpage)
     {
-        //
+        return view('back.tagpage.edit',['data'=>$tagpage]);
     }
 
     /**
@@ -71,8 +71,12 @@ class ModelsTagpageController extends Controller
      * @param  \App\ModelsTagpage  $modelsTagpage
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ModelsTagpage $modelsTagpage)
+    public function update(Request $request, ModelsTagpage $tagpage)
     {
+        $tagpage->name=$request->input('name');
+        $tagpage->slug=$request->input('slug');
+        $tagpage->save();
+        return redirect('admin/tagpage');
         //
     }
 
@@ -82,8 +86,9 @@ class ModelsTagpageController extends Controller
      * @param  \App\ModelsTagpage  $modelsTagpage
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ModelsTagpage $modelsTagpage)
+    public function destroy(ModelsTagpage $tagpage,TagpageService $tagpageService)
     {
-        //
+        $tagpageService->deleteRecord($tagpage);
+        return redirect('admin/tagpage');
     }
 }

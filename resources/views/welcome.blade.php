@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    РФ ПГУ им. Т.Г. Шевченко
                 </div>
 
                 <div class="links">

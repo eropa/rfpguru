@@ -15,7 +15,6 @@ class ModelsTagnewController extends Controller
      */
     public function index()
     {
-        //
         $dataTagnews=ModelsTagnew::all();
         return view('back.tagnew.index',['dataTagnews'=>$dataTagnews]);
     }
@@ -27,7 +26,6 @@ class ModelsTagnewController extends Controller
      */
     public function create()
     {
-        //
         return view('back.tagnew.create');
     }
 
@@ -39,7 +37,6 @@ class ModelsTagnewController extends Controller
      */
     public function store(Request $request,TagnewService $tagnewService)
     {
-        //
         $tagnewService->insertRecord($request);
         return redirect('admin/tagnew');
     }
@@ -61,9 +58,9 @@ class ModelsTagnewController extends Controller
      * @param  \App\ModelsTagnew  $modelsTagnew
      * @return \Illuminate\Http\Response
      */
-    public function edit(ModelsTagnew $modelsTagnew)
+    public function edit(ModelsTagnew $tagnew)
     {
-        //
+       return view('back.tagnew.edit',['data'=>$tagnew]);
     }
 
     /**
@@ -73,9 +70,11 @@ class ModelsTagnewController extends Controller
      * @param  \App\ModelsTagnew  $modelsTagnew
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ModelsTagnew $modelsTagnew)
+    public function update(Request $request, ModelsTagnew $tagnew)
     {
-        //
+        $tagnew->name=$request->input('name');
+        $tagnew->save();
+        return redirect('admin/tagnew');
     }
 
     /**
@@ -84,8 +83,9 @@ class ModelsTagnewController extends Controller
      * @param  \App\ModelsTagnew  $modelsTagnew
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ModelsTagnew $modelsTagnew)
+    public function destroy(ModelsTagnew $tagnew,TagnewService $tagnewService)
     {
-        //
+        $tagnewService->deleteRecord($tagnew);
+        return redirect('admin/tagnew');
     }
 }

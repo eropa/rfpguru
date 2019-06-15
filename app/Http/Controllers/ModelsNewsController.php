@@ -61,9 +61,10 @@ class ModelsNewsController extends Controller
      * @param  \App\ModelsNews  $modelsNews
      * @return \Illuminate\Http\Response
      */
-    public function edit(ModelsNews $modelsNews)
+    public function edit(ModelsNews $new)
     {
-        //
+        $dataTagnews=ModelsTagnew::all();
+        return view('back.new.edit',['new'=>$new,'dataTagnews'=>$dataTagnews]);
     }
 
     /**
@@ -73,8 +74,17 @@ class ModelsNewsController extends Controller
      * @param  \App\ModelsNews  $modelsNews
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ModelsNews $modelsNews)
+    public function update(Request $request, ModelsNews $new)
     {
+        $new->title=$request->input('name');
+        $new->name=$request->input('name');
+        $new->tagnews_id=$request->input('category');
+        $new->datapublic=$request->input('datepublic');
+        $new->textsmall=$request->input('editor1');
+        $new->textfull=$request->input('editor2');
+        $new->urls=$request->input('url');
+        $new->save();
+        return redirect('admin/new');
         //
     }
 
@@ -84,8 +94,9 @@ class ModelsNewsController extends Controller
      * @param  \App\ModelsNews  $modelsNews
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ModelsNews $modelsNews)
+    public function destroy(ModelsNews $new,NewService $newService)
     {
-        //
+        $newService->delete($new);
+        return redirect('admin/new');
     }
 }

@@ -53,14 +53,14 @@
                         <label for="exampleFormControlInput1">Короткий текст</label>
                         <textarea name="editor1"></textarea>
                         <script>
-                            CKEDITOR.replace( 'editor1' );
+                            CKEDITOR.replace( 'editor1', options );
                         </script>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Остольной текст</label>
                         <textarea name="editor2"></textarea>
                         <script>
-                            CKEDITOR.replace( 'editor2' );
+                            CKEDITOR.replace( 'editor2', options );
                         </script>
                     </div>
 

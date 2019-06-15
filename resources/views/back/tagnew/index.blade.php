@@ -23,8 +23,25 @@
                 @foreach($dataTagnews as $dataTagnew)
                     <tr>
                         <th scope="row">{{ $dataTagnew->id }}</th>
-                        <td>{{ $dataTagnew->name }}</td>
-                        <td>Удалить</td>
+                        <td>
+                            <a href="{{ url('admin/tagnew/'.$dataTagnew->id.'/edit') }}">
+                                {{ $dataTagnew->name }}
+                            </a>
+                        </td>
+                        <td>
+                                <a href="#"
+                                   onclick="event.preventDefault(); document.getElementById('delete{{$dataTagnew->id}}').submit();"
+                                >
+                                    Удалить
+                                </a>
+
+                                <form id="delete{{$dataTagnew->id}}" action="{{ url('admin/tagnew/'.$dataTagnew->id) }}"
+                                        method="POST"
+                                        style="display: none;">
+                                    @csrf
+                                    <input type="hidden" name="_method" value="delete" />
+                                </form>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
