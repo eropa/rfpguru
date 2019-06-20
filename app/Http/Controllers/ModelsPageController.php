@@ -60,9 +60,12 @@ class ModelsPageController extends Controller
      * @param  \App\ModelsPage  $modelsPage
      * @return \Illuminate\Http\Response
      */
-    public function edit(ModelsPage $modelsPage)
+    public function edit(ModelsPage $page)
     {
         //
+        $datasModels=ModelsTagpage::all();
+        return view('back.page.edit',['page'=>$page,'datasModels'=>$datasModels]);
+
     }
 
     /**
@@ -72,9 +75,13 @@ class ModelsPageController extends Controller
      * @param  \App\ModelsPage  $modelsPage
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ModelsPage $modelsPage)
+    public function update(Request $request,
+                           ModelsPage $page,
+                           PageService $pageService)
     {
-        //
+       // dump($page);
+       $pageService->update($request,$page);
+       return  redirect('admin/page');
     }
 
     /**
@@ -83,8 +90,10 @@ class ModelsPageController extends Controller
      * @param  \App\ModelsPage  $modelsPage
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ModelsPage $modelsPage)
+    public function destroy(ModelsPage $page,PageService $pageService)
     {
         //
+        $pageService->delete($page);
+        return  redirect('admin/page');
     }
 }

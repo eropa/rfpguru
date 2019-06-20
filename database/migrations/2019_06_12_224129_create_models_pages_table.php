@@ -18,11 +18,16 @@ class CreateModelsPagesTable extends Migration
             $table->string('title');
             $table->string('name');
             $table->string('slug');
-            $table->integer('tagpage');
-            $table->integer('user_id');
+            $table->unsignedBigInteger('tagpage');
+            $table->unsignedBigInteger('user_id');
             $table->text('texthtml');
             $table->boolean('public');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('tagpage')->references('id')->on('models_tagpages')
+                ->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

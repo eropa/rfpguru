@@ -53,4 +53,18 @@ class  PageService{
 
         $modelMy->save();
     }
+
+    public function delete($page){
+        $page->delete();
+    }
+
+    public function update($request,$page){
+
+        $page->title=$request->input('name');
+        $page->name=$request->input('name');
+        $page->tagpage=$request->input('category');
+        $page->texthtml=$request->input('editor1');
+        $page->slug=$request->input('url');
+        $page->save();
+    }
 }

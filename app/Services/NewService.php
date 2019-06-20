@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\ModelsNews;
+use App\ModelsPage;
 
 class NewService{
     function generate_chpu ($str)
@@ -55,6 +56,10 @@ class NewService{
 
     public function delete($new){
         $new->delete();
+    }
+
+    public function NewPagesIndex(){
+        return ModelsPage::all();
     }
 
 }
