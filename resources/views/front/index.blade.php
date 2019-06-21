@@ -1,6 +1,31 @@
 <!-- Stored in resources/views/child.blade.php -->
 @extends('front.main')
 
+@section('slaid')
+    <section id="main-slider" class="no-margin">
+        <div class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="item active">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="carousel-content center centered">
+                                    <h2 class="boxed animation animated-item-1 fade-down">Приемная компания</h2><br>
+                                    <p class="boxed animation animated-item-2 fade-up">
+                                        Сделайте правельный выбор
+                                    </p>
+                                    <br>
+                                    <a class="btn btn-md animation bounce-in" href="#services">Абитуриенту</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--/.item-->
+            </div><!--/.carousel-inner-->
+        </div><!--/.carousel-->
+    </section><!--/#main-slider-->
+@endsection
+
 @section('blog')
 
     <div class="container">
@@ -18,7 +43,8 @@
                              @asset($dataNew->fotonew)
                               }}" class="img-responsive" />
                             <div class="overlay">
-                                <a class="preview btn btn-outlined btn-primary" href="#">
+                                <a class="preview btn btn-outlined btn-primary"
+                                   href="{{ url('/new/'.$dataNew->urls) }}">
                                     <i class="fa fa-link"></i></a>
                             </div>
                         </div>
@@ -41,7 +67,8 @@
                                 {!! $dataNew->textsmall !!}
                             </div>
                             <div class="read-more-wrapper">
-                                <a href="#" class="btn btn-outlined btn-primary">Читать</a>
+                                <a href="{{ url('/new/'.$dataNew->urls) }}"
+                                   class="btn btn-outlined btn-primary">Читать</a>
                             </div>
                         </div>
                     </div>
@@ -51,5 +78,35 @@
 
         </div>
     </div>
+@endsection
+
+@section('jsfront')
+    <script type="text/javascript">
+        jQuery(document).ready(function($){
+            'use strict';
+            jQuery('body').backstretch([
+                "images/slaid0.jpg",
+                "images/slaid1.jpg",
+            ], {duration: 5000, fade: 500, centeredY: true });
+
+            $("#mapwrapper").gMap({ controls: false,
+                scrollwheel: false,
+                markers: [{
+                    latitude:40.7566,
+                    longitude: -73.9863,
+                    icon: { image: "images/marker.png",
+                        iconsize: [44,44],
+                        iconanchor: [12,46],
+                        infowindowanchor: [12, 0] } }],
+                icon: {
+                    image: "images/marker.png",
+                    iconsize: [26, 46],
+                    iconanchor: [12, 46],
+                    infowindowanchor: [12, 0] },
+                latitude:40.7566,
+                longitude: -73.9863,
+                zoom: 14 });
+        });
+    </script>
 
 @endsection

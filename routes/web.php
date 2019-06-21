@@ -14,8 +14,13 @@
 Route::get('/','MainController@IndexPage', function () {
 });
 
-Route::get('/test', function () {
-    return view('front.test');
+Route::get('/new/{slug}','MainController@NewShowPage', function () {
+});
+
+Route::get('/news/{list?}','MainController@NewsShowList', function ($list = 1) {
+});
+
+Route::get('/sveden','MainController@SvedPage', function () {
 });
 
 Auth::routes();
@@ -38,4 +43,7 @@ Route::middleware(['auth'])->group(function () {
         // Страница
         Route::resource('page', 'ModelsPageController');
     });
+});
+
+Route::get('/{name1}/{name2}','MainController@PageVar2', function ($name1,$name2) {
 });

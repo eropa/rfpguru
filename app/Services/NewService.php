@@ -65,4 +65,18 @@ class NewService{
         return $data;
     }
 
+    public function SearchSlug($url){
+        $data=ModelsNews::where('urls', $url)->first();
+        return $data;
+    }
+
+    public function ListNew($idList){
+        $data=ModelsNews::all()->sortByDesc('datapublic')->forPage($idList,3);
+        return $data;
+    }
+
+    public function NextList($idList){
+        $count=ModelsNews::all()->sortByDesc('datapublic')->forPage($idList,3)->count();
+        return $count;
+    }
 }

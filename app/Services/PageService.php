@@ -49,7 +49,7 @@ class  PageService{
         $modelMy->user_id=1;
         $modelMy->texthtml=$request->input('editor1');
         $modelMy->public=1;
-        $modelMy->slug=$this->generate_chpu($request->input('name'));
+        $modelMy->slug=$request->input('url');
 
         $modelMy->save();
     }
@@ -66,5 +66,15 @@ class  PageService{
         $page->texthtml=$request->input('editor1');
         $page->slug=$request->input('url');
         $page->save();
+    }
+
+    public function FoundPage($nameurl){
+        $data=ModelsPage::all()->where('slug',$nameurl)->first();
+        return $data;
+    }
+
+    public function FoundPageVar2($name1,$name2){
+        $data=ModelsPage::all()->where('slug',$name2)->where('tagpage',1)->first();
+        return $data;
     }
 }
