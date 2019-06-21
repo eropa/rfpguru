@@ -48,6 +48,7 @@ class NewService{
         $modelNew->textsmall=$request->input('editor1');
         $modelNew->textfull=$request->input('editor2');
         $modelNew->user_id=1;
+        $modelNew->fotonew=$request->input('filepath');
         $modelNew->tagnews_id=$request->input('category');
         $modelNew->datapublic=$request->input('datepublic');
         $modelNew->public=1;
@@ -59,7 +60,9 @@ class NewService{
     }
 
     public function NewPagesIndex(){
-        return ModelsPage::all();
+        $data=ModelsNews::all()->sortByDesc('datapublic')->take(4);
+        //$data->orderBy('datapublic')->get();
+        return $data;
     }
 
 }

@@ -20,6 +20,7 @@ class CreateModelsNewsTable extends Migration
             $table->string('urls');
             $table->text('textsmall');
             $table->text('textfull');
+            $table->text('fotonew');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('tagnews_id');
             $table->dateTime('datapublic');

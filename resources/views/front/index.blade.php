@@ -10,30 +10,43 @@
         </div>
         <div class="gap"></div>
         <div class="row">
-            <div class="col-md-4">
-                <div class="post">
-                    <div class="post-img-content">
-                        <img src="images/portfolio/folio02.jpg" class="img-responsive" />
-                        <div class="overlay">
-                            <a class="preview btn btn-outlined btn-primary" href="#"><i class="fa fa-link"></i></a>
+            @foreach($dataNews as $dataNew)
+                <div class="col-md-3" >
+                    <div class="post">
+                        <div class="post-img-content">
+                            <img src="{{
+                             @asset($dataNew->fotonew)
+                              }}" class="img-responsive" />
+                            <div class="overlay">
+                                <a class="preview btn btn-outlined btn-primary" href="#">
+                                    <i class="fa fa-link"></i></a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="content">
-                        <h2 class="post-title">Post Title</h2>
-                        <div class="author">
-                            <i class="fa fa-user"></i> By <b>Author</b> | <i class="fa fa-clock-o"></i> <time datetime="2014-01-20">April 11th, 2014</time>
-                        </div>
-                        <div>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                            Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                            unknown printer took a galley of type and scrambled it to make a type specimen book.
-                        </div>
-                        <div class="read-more-wrapper">
-                            <a href="#" class="btn btn-outlined btn-primary">Read more</a>
+                        <div class="content">
+                            <h2 class="post-title">{{ $dataNew->name }}</h2>
+                            <div class="author">
+                                <i class="fa fa-clock-o"></i>
+
+                                    <?php
+                                    $date=$dataNew->datapublic;
+                                    $date_for_database = date ("Y-m-d", strtotime($date));
+                                    $date_for_time = date ("H:i", strtotime($date));
+                                    $date_for_database=$date_for_database.' '.$date_for_time ;
+                                    ?>
+                                <time datetime="{{ $date_for_database }}">
+                                    {{ $date_for_database }}
+                                </time>
+                            </div>
+                            <div>
+                                {!! $dataNew->textsmall !!}
+                            </div>
+                            <div class="read-more-wrapper">
+                                <a href="#" class="btn btn-outlined btn-primary">Читать</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @endforeach
 
 
         </div>

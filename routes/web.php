@@ -24,7 +24,7 @@ Auth::routes();
 
 //Route::get('/admin/test','HomeController@testpage')->name('test');
 
-Route::middleware(['web'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::prefix('admin')->group(function () {
         // Тестовая запись
         //Route::get('test','AdminController@index')->name('admin_index');

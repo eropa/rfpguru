@@ -27,9 +27,8 @@
         jQuery(document).ready(function($){
             'use strict';
             jQuery('body').backstretch([
-                "images/bg/bg1.jpg",
-                "images/bg/bg2.jpg",
-                "images/bg/bg3.jpg"
+                "images/slaid0.jpg",
+                "images/slaid1.jpg",
             ], {duration: 5000, fade: 500, centeredY: true });
 
             $("#mapwrapper").gMap({ controls: false,
@@ -61,7 +60,7 @@
                 <span class="sr-only">Toggle navigation</span>
                 <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand" href="index.html"><h1>
+            <a class="navbar-brand" href="{{ url('/') }}"><h1>
                     РФ ПГУ</h1></a>
         </div>
         <div class="collapse navbar-collapse">

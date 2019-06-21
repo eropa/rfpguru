@@ -16,7 +16,7 @@ class ModelsNewsController extends Controller
      */
     public function index()
     {
-        $datas=ModelsNews::all();
+        $datas=ModelsNews::all()->sortByDesc('datapublic');
         return view('back.new.index',['datas'=>$datas]);
     }
 
@@ -83,6 +83,7 @@ class ModelsNewsController extends Controller
         $new->textsmall=$request->input('editor1');
         $new->textfull=$request->input('editor2');
         $new->urls=$request->input('url');
+        $new->fotonew=$request->input('filepath');
         $new->save();
         return redirect('admin/new');
         //

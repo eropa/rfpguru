@@ -176,6 +176,10 @@
 
 @section('adminlte_js')
     <script src="{{ asset('vendor/adminlte/dist/js/adminlte.min.js') }}"></script>
+    <script src="{{ asset('vendor/laravel-filemanager/js/lfm.js') }}"></script>
+    <script>
+        $('#lfm').filemanager('Images');
+    </script>
     @stack('js')
     @yield('js')
 @stop
