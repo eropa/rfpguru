@@ -12,10 +12,11 @@
                                 <div class="carousel-content center centered">
                                     <h2 class="boxed animation animated-item-1 fade-down">Приемная компания</h2><br>
                                     <p class="boxed animation animated-item-2 fade-up">
-                                        Сделайте правельный выбор
+                                        Сделайте правильный выбор
                                     </p>
                                     <br>
-                                    <a class="btn btn-md animation bounce-in" href="#services">Абитуриенту</a>
+                                    <a class="btn btn-md animation bounce-in"
+                                       href="{{ url('/abitur') }}">Абитуриенту</a>
                                 </div>
                             </div>
                         </div>

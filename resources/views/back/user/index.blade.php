@@ -5,18 +5,18 @@
 
     <div class="row">
         <h1>
-            Список страниц
+            Список пользователей
         </h1>
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="box box-solid box-default">
                 <a class="btn btn-success"
-                   href="{{ url('admin/page/create') }}" role="button">+ Добавить</a>
+                   href="{{ url('admin/user/create') }}" role="button">+ Добавить</a>
                 <table class="table table-hover table-dark">
                     <thead>
                     <tr>
                         <th scope="col">id</th>
-                        <th scope="col">Название</th>
-                        <th scope="col">Категория</th>
+                        <th scope="col">e-mail</th>
+                        <th scope="col">Ф.И.О</th>
                         <th scope="col">Действие</th>
                     </tr>
                     </thead>
@@ -24,24 +24,18 @@
                     @foreach($datas as $data)
                         <tr>
                             <td>{{ $data->id }}</td>
-
-
-
-                            <td><a href="{{ url('admin/page/'.$data->id.'/edit') }}">
-                                    {{ $data->name }}
+                            <td>
+                                <a href="{{ url('admin/user/'.$data->id.'/edit') }}">
+                                    {{ $data->email }}
                                 </a>
                             </td>
                             <td>
-                                <?php
-                                $namedata=\App\ModelsTagpage::find($data->tagpage );
-                                echo $namedata->name;
-                                ?>
+                                <a href="{{ url('admin/user/'.$data->id.'/edit') }}">
+                                    {{ $data->name }}
+                                </a>
+
                             </td>
                             <td>
-                                <a class="btn btn-primary"
-                                   href="{{ url('/'.$data->slug) }}"
-                                   role="button">Просмотреть</a>
-
                                 <a href="#"
                                    class="btn btn-danger"
                                    role="button"
@@ -50,7 +44,7 @@
                                     Удалить
                                 </a>
 
-                                <form id="delete{{$data->id}}" action="{{ url('admin/page/'.$data->id) }}"
+                                <form id="delete{{$data->id}}" action="{{ url('admin/user/'.$data->id) }}"
                                       method="POST"
                                       style="display: none;">
                                     @csrf

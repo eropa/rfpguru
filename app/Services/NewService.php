@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\ModelsNews;
 use App\ModelsPage;
+use Illuminate\Support\Facades\Auth;
 
 class NewService{
     function generate_chpu ($str)
@@ -41,13 +42,19 @@ class NewService{
     }
 
     public function insert($request){
+        dump($request->all());
+        $iduser = Auth::user()->id;
         $modelNew=new ModelsNews();
         $modelNew->title=$request->input('name');
         $modelNew->name=$request->input('name');
-        $modelNew->urls=$this->generate_chpu($request->input('name'));
+        if(($request->input('url')=="")or(is_null($request->input('url')))){
+            $modelNew->urls=$this->generate_chpu($request->input('name'));
+        }else{
+            $modelNew->urls=$request->input('url');
+        }
         $modelNew->textsmall=$request->input('editor1');
         $modelNew->textfull=$request->input('editor2');
-        $modelNew->user_id=1;
+        $modelNew->user_id=$iduser;
         $modelNew->fotonew=$request->input('filepath');
         $modelNew->tagnews_id=$request->input('category');
         $modelNew->datapublic=$request->input('datepublic');

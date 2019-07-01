@@ -22,7 +22,7 @@
                 <nav class="navbar navbar-static-top">
                     <div class="container">
                         <div class="navbar-header">
-                            <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}" class="navbar-brand">
+                            <a href="{{ url(config('adminlte.dashboard_url', '/')) }}" class="navbar-brand">
                             </a>
                             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
                                 <i class="fa fa-bars"></i>
@@ -38,7 +38,7 @@
                         <!-- /.navbar-collapse -->
                     @else
                         <!-- Logo -->
-                            <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}" class="logo">
+                            <a href="{{ url(config('adminlte.dashboard_url', '/')) }}" class="logo">
                                 <!-- mini logo for sidebar mini 50x50 pixels -->
                                 <span class="logo-mini">ПГУ</span>
                                 <!-- logo for regular state and mobile devices -->
@@ -131,14 +131,15 @@
                                 <li><a href="{{ url("admin/page") }}">Список страниц</a></li>
                             </ul>
                         </li>
+                        <li><a href="{{ url("admin/fotoalbom") }}"><i class="fa fa-file-image-o"></i> <span>Фотогалерея</span></a></li>
 
                         <!-- <li><a href="#"><i class="fa fa-image"></i> <span>фотогалерея</span></a></li>-->
 
 
                        <li class="header">Настройки</li>
                        <!-- Optionally, you can add icons to the links -->
-                       <!--  <li><a href="#"><i class="fa fa-user"></i> <span>Пользователи</span></a></li>-->
-                       <!-- <li><a href="#"><i class="fa fa-gears"></i> <span>Сайт</span></a></li>-->
+                      <li><a href="{{ url("admin/user") }}"><i class="fa fa-user"></i> <span>Пользователи</span></a></li>
+                        <li><a href="{{ url("admin/option") }}"><i class="fa fa-gears"></i> <span>Сайт</span></a></li>
                     </ul>
 
                    <!-- /.sidebar-menu -->

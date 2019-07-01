@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\ModelsPage;
+use App\ModelsTagpage;
+use Illuminate\Support\Facades\Auth;
 
 class  PageService{
 
@@ -41,15 +43,22 @@ class  PageService{
     }
 
     public function insert($request){
+        $iduser = Auth::user()->id;
+
         $modelMy=new ModelsPage();
 
         $modelMy->title=$request->input('name');
         $modelMy->name=$request->input('name');
         $modelMy->tagpage=$request->input('category');
-        $modelMy->user_id=1;
+        $modelMy->user_id=$iduser;
         $modelMy->texthtml=$request->input('editor1');
         $modelMy->public=1;
-        $modelMy->slug=$request->input('url');
+        if(($request->input('url')=="")or(is_null($request->input('url')))){
+            $modelMy->slug=$this->generate_chpu($request->input('name'));
+        }else{
+            $modelMy->slug=$request->input('url');
+        }
+
 
         $modelMy->save();
     }
@@ -74,7 +83,11 @@ class  PageService{
     }
 
     public function FoundPageVar2($name1,$name2){
-        $data=ModelsPage::all()->where('slug',$name2)->where('tagpage',1)->first();
+        $idtagpage=ModelsTagpage::all()->where('slug',$name1)->first();
+        if(is_null($idtagpage)){
+            return null;
+        }
+        $data=ModelsPage::all()->where('slug',$name2)->where('tagpage',$idtagpage->id)->first();
         return $data;
     }
 }

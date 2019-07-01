@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+@inject('metrics', 'App\Services\OptionService')
 <html lang="ru">
 <head>
     <meta charset="utf-8">
@@ -38,17 +39,20 @@
                 <i class="fa fa-bars"></i>
             </button>
             <a class="navbar-brand" href="{{ url('/') }}"><h1>
-                    РФ ПГУ</h1></a>
+                   {{ $metrics->GetVar("namesait") }}
+
+                </h1></a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{{ url('/') }}">Главная</a></li>
                 <li><a href="{{ url('/news') }}">Пресс-центр</a></li>
                 <li><a href="{{ url('/sveden') }}">О филиале</a></li>
-                <li><a href="services.html">Абитуриенту</a></li>
-                <li><a href="portfolio.html">Образование</a></li>
-                <li><a href="blog.html">Наука</a></li>
-                <li><a href="blog.html">Контакты</a></li>
+                <li><a href="{{ url('/abitur') }}">Абитуриенту</a></li>
+                <li><a href="{{ url('/obrazovanie') }}">Образование</a></li>
+                <li><a href="{{ url('/nauka') }}">Наука</a></li>
+                <li><a href="{{ url('/fotoalbom') }}">Фото</a></li>
+                <li><a href="{{ url('/kontakty') }}">Контакты</a></li>
             </ul>
         </div>
     </div>
@@ -68,48 +72,19 @@
     <section id="bottom" class="">
         <div class="container">
             <div class="row">
-                <div class="col-md-3 col-sm-6 about-us-widget">
-                    <h4>Global Coverage</h4>
-                    <p>Was drawing natural fat respect husband. An as noisy an offer drawn blush place. These tried for way joy wrote witty. In mr began music weeks after at begin.</p>
-                </div><!--/.col-md-3-->
+                <div class="col-md-3 col-sm-6 about-us-widget"></div><!--/.col-md-3-->
+
+                <div class="col-md-3 col-sm-6"></div><!--/.col-md-3-->
+
+                <div class="col-md-3 col-sm-6"></div><!--/.col-md-3-->
 
                 <div class="col-md-3 col-sm-6">
-                    <h4>Company</h4>
-                    <div>
-                        <ul class="arrow">
-                            <li><a href="#">Company Overview</a></li>
-                            <li><a href="#">Meet The Team</a></li>
-                            <li><a href="#">Our Awesome Partners</a></li>
-                            <li><a href="#">Our Services</a></li>
-                        </ul>
-                    </div>
-                </div><!--/.col-md-3-->
-
-                <div class="col-md-3 col-sm-6">
-                    <h4>Latest Articles</h4>
-                    <div>
-
-                        <div class="media">
-                            <div class="pull-left">
-                                <img class="widget-img" src="
-                                {{ asset('images/portfolio/folio02.jpg') }}
-                               " alt="">
-                            </div>
-                            <div class="media-body">
-                                <span class="media-heading"><a href="#">Blog Post B</a></span>
-                                <small class="muted">Posted 14 April 2014</small>
-                            </div>
-                        </div>
-                    </div>
-                </div><!--/.col-md-3-->
-
-                <div class="col-md-3 col-sm-6">
-                    <h4>Come See Us</h4>
+                    <h4>Контакт</h4>
                     <address>
-                        <strong>Ace Towers</strong><br>
-                        New York Ave,<br>
-                        New York, 215648<br>
-                        <abbr title="Phone"><i class="fa fa-phone"></i></abbr> 546 840654 05
+                        <strong>ПМР</strong><br>
+                        г.Рыбница<br>
+                        Победа 12<br>
+                        <abbr title="Phone"><i class="fa fa-phone"></i></abbr> 00 (373) 555 555-55
                     </address>
                 </div> <!--/.col-md-3-->
             </div>
@@ -120,7 +95,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-8">
-                    &copy; 2019 Your Site Name. All Rights Reserved. <a href="https://templatemag.com/bootstrap-templates/">Bootstrap templates</a> by TemplateMag.
+                    &copy; 2019 rfpgu. All Rights Reserved.
                 </div>
                 <div class="col-sm-4">
                     <ul class="pull-right">

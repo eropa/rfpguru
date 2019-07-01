@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\FotoBody;
+use App\Model\FotoHead;
 use App\Services\NewService;
 use App\Services\PageService;
 use Illuminate\Http\Request;
@@ -30,17 +32,42 @@ class MainController extends Controller
 
     public function SvedPage(PageService $pageService){
         $dataPage=$pageService->FoundPage('sveden');
-       // dump($dataPage);
         return view('front.page',['dataPage'=>$dataPage]);
     }
 
+    public function AbiturPage(PageService $pageService){
+        $dataPage=$pageService->FoundPage('abitur');
+        return view('front.page',['dataPage'=>$dataPage]);
+    }
+
+
+    public function PageVar1($name1,PageService $pageService){
+        $data=$pageService->FoundPage($name1);
+        if(is_null($data)){
+            abort(404);
+        }
+        return view('front.page',['dataPage'=>$data]);
+    }
+
     public function PageVar2($name1,$name2,PageService $pageService){
-        //echo $name1." / / ".$name2;
         $data=$pageService->FoundPageVar2($name1,$name2);
         if(is_null($data)){
             abort(404);
         }
-        return $data->texthtml;
+        return view('front.page',['dataPage'=>$data]);
     }
+
+    public function FotoAlbomPage(){
+        $datas=FotoHead::all();
+        return view('front.fotoalbom',['datas'=>$datas]);
+    }
+
+    public function FotoAlbomFotoPage($id){
+       // $datas=FotoHead::all();
+        //return view('front.fotoalbom',['datas'=>$datas]);
+        $fotos=FotoBody::where('foto_albomid',$id)->get();
+        return view('front.fotos',['fotos'=>$fotos]);
+    }
+
 
 }
